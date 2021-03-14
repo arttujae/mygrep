@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <cstring>  
-//using namespace std;
+using namespace std;
 //implementation of classic linux command 'grep'
 //int searching(char* text, char* search);
 int main(int argc,char *argv[]){
@@ -26,20 +26,21 @@ int main(int argc,char *argv[]){
   std::ifstream txtfile;
   std::string line;
   if(argc == 3){ 
-    std::string search_ff(argv[1]);           //insert txt-file and word to search to strings
+    search_f =argv[1];           //insert txt-file and word to search to strings
     txtfile.open(argv[2]);                   //
-      if (txtfile.fail()) {                 //if argv[2] is not a file
-        std::cout << "Error opening file"; //
-        return(0);                        //
-      }      
-      while(getline(txtfile,line)){
-        if(line.find(search_ff) != std::string::npos)
-                std::cout << line;
-        else
-       std::cout <<  "\n"; 
-      
+    if (txtfile.fail()) {                 //if argv[2] is not a file
+      std::cout << "Error opening file"; //
+      return(0);                        //
+    }      
+      std::cout << "\n"; 
+      while(std::getline(txtfile, line))   //loop reads txtfile row by row
+      {
+        if(strstr(line.c_str(), search_f.c_str())){  //strstr searches substrings
+          std::cout << line << std::endl;
+        }
       }
   } 
+txtfile.close();
 return(0);
 } 
 

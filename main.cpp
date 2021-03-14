@@ -5,19 +5,17 @@
 #include <cstring>  
 using namespace std;
 //implementation of classic linux command 'grep'
-//int searching(char* text, char* search);
 int main(int argc,char *argv[]){
    std::string text_f;
    std::string search_f;
-
-     // INCREMENT 1 DOWN BELOW
-    //comparing two strings together, if first given one includes the second one 
+   // INCREMENT 1 DOWN BELOW
+  //comparing two strings together, checks if first given includes the second one.
   if(argc == 1){
     std::cout << "Give a string from which to search for: ";
     std::getline(std::cin,text_f);
     std::cout << "Give a string to search for: ";
     std::getline(std::cin,search_f); 
-      if(strstr(text_f.c_str(),search_f.c_str()))
+      if(strstr(text_f.c_str(),search_f.c_str()))  //strstr searches substrings
         std::cout << "\"" << search_f << "\" FOUND in " << "\"" << text_f << "\""  << "\n\n";     
       else
         std::cout << "\"" << search_f << "\" NOT FOUND in " << "\"" << text_f << "\""  << "\n\n";
@@ -28,14 +26,14 @@ int main(int argc,char *argv[]){
   if(argc == 3){ 
     search_f =argv[1];           //insert txt-file and word to search to strings
     txtfile.open(argv[2]);                   //
-    if (txtfile.fail()) {                 //if argv[2] is not a file
+    if (txtfile.fail()) {                 //if argv[2] is not a file, error will be printed
       std::cout << "Error opening file"; //
       return(0);                        //
     }      
       std::cout << "\n"; 
       while(std::getline(txtfile, line))   //loop reads txtfile row by row
       {
-        if(strstr(line.c_str(), search_f.c_str())){  //strstr searches substrings
+        if(strstr(line.c_str(), search_f.c_str())){  //strstr searches if argv[1] is a substring
           std::cout << line << std::endl;
         }
       }
